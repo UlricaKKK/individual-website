@@ -256,9 +256,17 @@
             </div>
             <div class="flex-1 space-y-6">
                 <h2 class="text-4xl md:text-5xl font-black"><span data-i18n="about-title-1">关于</span> <span class="bg-brand-blue text-white px-2 transform rotate-1 inline-block" data-i18n="about-title-2">我</span></h2>
-                <p class="text-gray-600 text-lg" data-i18n="about-intro">
-                    我是邓可欣，目前就读于华东理工大学（会计硕士）。我有在字节跳动、游族网络和明略科技的实习经历，积累了丰富的数据分析与产品运营实战经验。
-                </p>
+                <div class="space-y-4">
+                    <p class="text-gray-600 text-lg leading-relaxed" data-i18n="about-intro-1">
+                        我是邓可欣，毕业于华东理工大学，现任携程策略运营，负责入境游项目管理与业绩分析工作，统筹跨团队协同、数据监控体系搭建及精细化运营策略落地，推动项目超额完成年度目标。
+                    </p>
+                    <p class="text-gray-600 text-lg leading-relaxed" data-i18n="about-intro-2">
+                        曾在字节跳动、游族网络、明略科技实习，积累了丰富的数据分析与产品运营实战经验，擅长通过数据洞察驱动业务决策，具备从0到1搭建协同机制与数据体系的能力。
+                    </p>
+                    <p class="text-gray-600 text-lg italic bg-gray-50 p-4 rounded-xl border-l-4 border-brand-yellow" data-i18n="about-intro-quote">
+                        爱好写作、旅游、摄影，性格开朗，乐于接触新鲜事物。因为“使沙漠显得美丽的，是它在某处藏着一口井。”，所以为了找寻一口井，我会翻越整个沙漠。
+                    </p>
+                </div>
                 
                 <div class="space-y-6 pt-4">
                     <div class="flex gap-4 items-start">
@@ -483,7 +491,9 @@
                 "works-desc": "分享求职经验与职场心得，累计帮助数万名求职者避坑。",
                 "about-title-1": "关于",
                 "about-title-2": "我",
-                "about-intro": "我是邓可欣，目前就读于华东理工大学（会计硕士）。我有在字节跳动、游族网络和明略科技的实习经历，积累了丰富的数据分析与产品运营实战经验。",
+                "about-intro-1": "我是邓可欣，毕业于华东理工大学，现任携程策略运营，负责入境游项目管理与业绩分析工作，统筹跨团队协同、数据监控体系搭建及精细化运营策略落地，推动项目超额完成年度目标。",
+                "about-intro-2": "曾在字节跳动、游族网络、明略科技实习，积累了丰富的数据分析与产品运营实战经验，擅长通过数据洞察驱动业务决策，具备从0到1搭建协同机制与数据体系的能力。",
+                "about-intro-quote": "爱好写作、旅游、摄影，性格开朗，乐于接触新鲜事物。因为“使沙漠显得美丽的，是它在某处藏着一口井。”，所以为了找寻一口井，我会翻越整个沙漠。",
                 "about-edu-title": "教育背景",
                 "about-edu-desc": "华东理工大学 (硕士) & 武汉理工大学 (本科)",
                 "about-lang-title": "语言能力",
@@ -552,7 +562,9 @@
                 "works-desc": "Sharing job hunting experiences and workplace insights, helping thousands of job seekers.",
                 "about-title-1": "About",
                 "about-title-2": "Me",
-                "about-intro": "I'm Deng Kexin, currently a Master's student in Accounting at ECUST. I have internship experience at ByteDance, Youzu Interactive, and Minglue Technology, accumulating rich practical experience in data analysis and product operations.",
+                "about-intro-1": "I am Deng Kexin, a graduate of ECUST, currently working as a Strategy Operations Specialist at Ctrip, responsible for inbound tourism project management and performance analysis. I coordinate cross-team collaboration, build data monitoring systems, and implement refined operation strategies, driving the project to exceed annual targets.",
+                "about-intro-2": "I have interned at ByteDance, Youzu Interactive, and Minglue Technology, accumulating rich practical experience in data analysis and product operations. I excel at driving business decisions through data insights and have the ability to build collaboration mechanisms and data systems from 0 to 1.",
+                "about-intro-quote": "I enjoy writing, traveling, and photography. I have a cheerful personality and love exploring new things. As 'What makes the desert beautiful is that somewhere it hides a well,' I will traverse the entire desert to find that well.",
                 "about-edu-title": "Education",
                 "about-edu-desc": "ECUST (Master's) & WIT (Bachelor's)",
                 "about-lang-title": "Languages",
@@ -619,7 +631,12 @@
             elements.forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[currentLang][key]) {
-                    el.textContent = translations[currentLang][key];
+                    // Check if the element contains HTML structure (like the quote block)
+                    if (key === 'about-intro-quote' || key === 'about-intro-1' || key === 'about-intro-2') {
+                        el.innerHTML = translations[currentLang][key];
+                    } else {
+                        el.textContent = translations[currentLang][key];
+                    }
                 }
             });
             // Update document title
